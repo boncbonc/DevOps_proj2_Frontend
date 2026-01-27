@@ -1,0 +1,27 @@
+<h2>Ajouter un étudiant</h2>
+
+<form (ngSubmit)="submit()" #f="ngForm">
+  <div>
+    <label>Prénom</label><br />
+    <input type="text" name="firstName" [(ngModel)]="model.firstName" required />
+  </div>
+
+  <div>
+    <label>Nom</label><br />
+    <input type="text" name="lastName" [(ngModel)]="model.lastName" required />
+  </div>
+
+  <div>
+    <label>Email</label><br />
+    <input type="email" name="email" [(ngModel)]="model.email" required />
+  </div>
+
+  <br />
+  <button type="submit" [disabled]="loading || f.invalid">Créer</button>
+  &nbsp;
+  <a routerLink="/etudiants">Annuler</a>
+
+  <p *ngIf="loading">Chargement...</p>
+  <p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+  <p *ngIf="successMessage" style="color:green">{{ successMessage }}</p>
+</form>

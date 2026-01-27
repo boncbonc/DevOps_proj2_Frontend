@@ -1,0 +1,40 @@
+<div style="display:flex; justify-content:space-between; align-items:center; gap: 12px;">
+  <h2>Étudiants</h2>
+  <div>
+    <a routerLink="/etudiants/new">+ Ajouter</a>
+    &nbsp;|&nbsp;
+    <button (click)="logout()">Déconnexion</button>
+  </div>
+</div>
+
+<p *ngIf="loading">Chargement...</p>
+<p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+
+<table *ngIf="!loading && etudiants.length" border="1" cellpadding="6" cellspacing="0" style="width:100%">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let e of etudiants">
+      <td>{{ e.id }}</td>
+      <td>{{ e.firstName }}</td>
+      <td>{{ e.lastName }}</td>
+      <td>{{ e.email }}</td>
+      <td>
+        <a [routerLink]="['/etudiants', e.id]">Détail</a>
+        &nbsp;|&nbsp;
+        <a [routerLink]="['/etudiants', e.id, 'edit']">Modifier</a>
+        &nbsp;|&nbsp;
+        <button (click)="delete(e.id)">Supprimer</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p *ngIf="!loading && !etudiants.length">Aucun étudiant.</p>

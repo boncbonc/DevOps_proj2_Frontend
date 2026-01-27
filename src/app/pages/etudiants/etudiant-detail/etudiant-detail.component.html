@@ -1,0 +1,15 @@
+<h2>Détail étudiant</h2>
+
+<p *ngIf="loading">Chargement...</p>
+<p *ngIf="errorMessage" style="color:red">{{ errorMessage }}</p>
+
+<div *ngIf="!loading && etudiant">
+  <p><b>ID :</b> {{ etudiant.id }}</p>
+  <p><b>Prénom :</b> {{ etudiant.firstName }}</p>
+  <p><b>Nom :</b> {{ etudiant.lastName }}</p>
+  <p><b>Email :</b> {{ etudiant.email }}</p>
+
+  <a routerLink="/etudiants">← Retour</a>
+  &nbsp;|&nbsp;
+  <a [routerLink]="['/etudiants', etudiant.id, 'edit']">Modifier</a>
+</div>
