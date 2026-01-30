@@ -5,6 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { UserService } from '../../core/service/user.service';
 import { UserMockService } from '../../core/service/user-mock.service';
 
+// Groupe de tests : RegisterComponent
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
   let fixture: ComponentFixture<RegisterComponent>;
@@ -24,7 +25,9 @@ describe('RegisterComponent', () => {
     fixture.detectChanges();
   });
 
+  // Cas de test : should create
   it('should create', () => {
+    // Vérification (assertion) : on attend le résultat ci-dessous
     expect(component).toBeTruthy();
   });
 });

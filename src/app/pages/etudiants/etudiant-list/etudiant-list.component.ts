@@ -40,10 +40,15 @@ export class EtudiantListComponent implements OnInit {
         this.loading = false;
       },
       error: (err: unknown) => {
-		const httpErr = err as HttpErrorResponse;
-			this.errorMessage =
-			(httpErr.error as any)?.message ??httpErr.message ??'Erreur lors du chargement des étudiants';
-	  }
+        // En cas d'erreur, on arrête le chargement et on affiche un message.
+        this.loading = false;
+
+        const httpErr = err as HttpErrorResponse;
+        this.errorMessage =
+          (httpErr.error as any)?.message ??
+          httpErr.message ??
+          'Erreur lors du chargement des étudiants';
+      },
     });
   }
 
