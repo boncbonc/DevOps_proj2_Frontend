@@ -5,9 +5,9 @@ module.exports = {
   testMatch: ['**/+(*.)+(spec).+(ts|js)'],
   setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   collectCoverage: true,
-  // Rapport de couverture (HTML et résumé console)
+  // Rapport de couverture (HTML + lcov + résumé console)
   coverageDirectory: 'coverage',
-  coverageReporters: ['html', 'text-summary'],
+  coverageReporters: ['html', 'lcov', 'text-summary'],
   // On compte la couverture uniquement sur le code applicatif (hors bootstrap)
   collectCoverageFrom: [
     'src/app/**/*.ts',
@@ -17,10 +17,12 @@ module.exports = {
     '!src/app/**/test.ts',
     '!src/app/**/app.routes.ts',
   ],
-  // Seuil demandé (80%)
+  // Seuil demandé(80%)
   coverageThreshold: {
     global: {
+      branches: 50,
       functions: 80,
+      lines: 80,
       statements: 80,
     },
   },
