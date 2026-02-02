@@ -6,7 +6,7 @@ describe('Inscription (Register)', () => {
       expect(req.body).to.deep.equal({
         firstName: 'Serge',
         lastName: 'Karamazov',
-        login: 'Serge',
+        login: 'serge',
         password: 'RickHunter',
       });
 
@@ -23,7 +23,7 @@ describe('Inscription (Register)', () => {
     // Remplir le formulaire (sélecteurs stables : formControlName)
     cy.get('input[formcontrolname="firstName"]').type('Serge');
     cy.get('input[formcontrolname="lastName"]').type('Karamazov');
-    cy.get('input[formcontrolname="login"]').type('Serge');
+    cy.get('input[formcontrolname="login"]').type('serge');
     cy.get('input[formcontrolname="password"]').type('RickHunter');
 
     // Soumettre

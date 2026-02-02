@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { AuthService } from '../../core/service/auth.service';
 
 @Component({
@@ -18,7 +19,10 @@ export class LoginComponent {
   errorMessage = '';
   successMessage = '';
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   onSubmit(): void {
     this.loading = true;
@@ -26,13 +30,15 @@ export class LoginComponent {
     this.successMessage = '';
 
     this.authService.login({
-      login: this.login,
+      login: this.login,	
       password: this.password
     }).subscribe({
       next: (token: string) => {
         this.loading = false;
         this.successMessage = 'Authentification réussie';
         localStorage.setItem('token', token);
+      // Redirection vers /étudiants après authentification réussie
+        this.router.navigate(['/etudiants']);
       },
       error: (_error: unknown) => {
         this.loading = false;
